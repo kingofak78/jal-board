@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Controller</title>
-  
-  <!-- Link to your custom CSS -->
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="/css/phon.css" />
 
   <!-- Font Awesome 4.7.0 for WhatsApp icon -->
@@ -15,38 +15,42 @@
   />
 </head>
 <body>
+  <!-- HEADER NAV (Flex Layout) -->
   <nav class="header-nav">
-    <!-- Hamburger Menu Icon -->
-    <div class="menu-icon">&#9776;</div>
+    <!-- Left: Menu Icon -->
+    <div class="nav-left">
+      <div class="menu-icon">&#9776;</div>
+    </div>
 
-    <!-- Title -->
-    <h1 class="title">Admin</h1>
-    
-    <!-- WhatsApp Icon Link -->
-    <a
-      href="https://wa.me/917865067071?text=Hello%20sir%20i%20need%20a%20pannel.%20can%20you%20help%20me"
-      target="_blank"
-      rel="noopener noreferrer"
-      style="margin-left: 10px;"
-    >
-      <!-- Font Awesome WhatsApp Icon -->
-      <i class="fa fa-whatsapp fa-2x" style="color:#25D366;"></i>
-    </a>
+    <!-- Center: Title & WhatsApp Icon -->
+    <div class="nav-center">
+      <h1 class="title">Admin</h1>
+      <a
+        href="https://wa.me/917865067071?text=Hello%20sir%20i%20need%20a%20pannel.%20can%20you%20help%20me"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="whatsapp-link"
+      >
+        <i class="fa fa-whatsapp"></i>
+      </a>
+    </div>
 
-    <!-- Logout Button -->
-    <button id="logoutAllButton">
-      <img src="/image/logout.png" alt="Logout">
-    </button>
+    <!-- Right: Logout Button -->
+    <div class="nav-right">
+      <button id="logoutAllButton">
+        <img src="/image/logout.png" alt="Logout">
+      </button>
+    </div>
   </nav>
   
-  <!-- Sidebar Navigation -->
+  <!-- SIDEBAR NAVIGATION -->
   <div class="nav-links">
     <a href="/api/admin/settings">Update Number</a>
     <a href="/api/notification/sms">All SMS</a>
     <a href="/api/auth/change-credentials">Password change</a>
   </div>
 
-  <!-- Main Content -->
+  <!-- MAIN CONTENT -->
   <div class="dot">
     <div class="container" id="deviceContainer">
       <% 
@@ -82,10 +86,9 @@
     </div>
   </div>
 
-  <!-- Socket.io and other scripts -->
+  <!-- SCRIPTS -->
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/script.js"></script>
-  <!-- External JS for logout functionality -->
   <script src="/js/logout.js"></script>
 </body>
 </html>
